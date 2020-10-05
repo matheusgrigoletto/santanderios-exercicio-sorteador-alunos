@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     var alunos: [Aluno] = []
     var grupos: [Grupo] = []
     var currentIndex: Int = 0
-    
+    var qtdAlunosPorGrupo: Int = 6
     
     @IBOutlet weak var sortearButton: UIButton!
     @IBOutlet weak var paginacaoSteper: UIStepper!
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     }
     
     private func sortear() {
-        self.grupos = Sorteador(comAlunos: self.alunos).sortear(quantidadeAlunos: 6)
+        self.grupos = Sorteador(comAlunos: self.alunos).sortear(quantidadeAlunos: self.qtdAlunosPorGrupo)
         self.paginacaoSteper.maximumValue = Double(grupos.count) - 1
         self.atualiza(numGrupo: 0)
     }
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         self.atualiza(numGrupo: Int(sender.value))
     }
     
-    func atualiza(numGrupo:Int) {
+    func atualiza(numGrupo: Int) {
         let grupo: Grupo = self.grupos[numGrupo]
         let alunos = grupo.obterAlunos()
         
